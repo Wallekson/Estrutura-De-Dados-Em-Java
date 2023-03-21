@@ -1,6 +1,6 @@
 package one.digitalinnovation;
 
-public class Pilha {
+public class Pilha { //Estrutura de dados dinamica
 
     private No refNoEntradaPilha;
 
