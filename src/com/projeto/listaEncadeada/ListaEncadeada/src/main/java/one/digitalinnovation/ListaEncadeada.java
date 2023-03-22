@@ -7,6 +7,7 @@ public class ListaEncadeada<T> {
     No<T> referenciaEntrada;
 
     public ListaEncadeada(){
+
         this.referenciaEntrada = null;
     }
 
