@@ -1,6 +1,6 @@
 package one.digitalinnovation;
 
-public class Main {
+public class MainListaDupla {
 
     public static void main(String[] args){
 
