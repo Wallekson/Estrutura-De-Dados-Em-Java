@@ -10,7 +10,7 @@ public class ArvoreBinaria <T extends Comparable<T>> {
 
     public void inserir(T conteudo) { // conteudo do tipo generico
         BinNo<T> novoNo = new BinNo<>(conteudo); // nó do conteudo
-        this.raiz = inserir(raiz, novoNo); // metodo publico chama o metodo abaixo
+        raiz = inserir(raiz, novoNo); // metodo publico chama o metodo abaixo
     }
 
     private BinNo<T> inserir(BinNo<T> atual, BinNo<T> novoNo) {
@@ -25,20 +25,20 @@ public class ArvoreBinaria <T extends Comparable<T>> {
     }
 
     public void exibirInOrdem() {
-        System.out.println("\n Exibindo InOrdem");
+        System.out.println("\n Exibindo InOrdem ");
         exibirInOrdem(this.raiz); // exibindo em ordem a partir da raiz
     }
 
     private void exibirInOrdem(BinNo<T> atual) {
         if (atual != null) {
             exibirInOrdem(atual.getNoEsq()); // visita o da esquerda
-            System.out.println(atual.getConteudo() + ","); // exibe o atual
+            System.out.print(atual.getConteudo() + ","); // exibe o atual
             exibirInOrdem(atual.getNoDir()); // visita o da direita
         }
     }
 
     public void exibirPosOrdem() {
-        System.out.println("\n Exibindo PosOrdem");
+        System.out.println("\n Exibindo PosOrdem ");
         exibirPosOrdem(this.raiz); // exibindo em ordem a partir da raiz
     }
 
@@ -46,18 +46,18 @@ public class ArvoreBinaria <T extends Comparable<T>> {
         if (atual != null) {
             exibirPosOrdem(atual.getNoEsq()); // visita o da esquerda
             exibirPosOrdem(atual.getNoDir()); // visita o da direita
-            System.out.println(atual.getConteudo() + ","); // exibe o atual
+            System.out.print(atual.getConteudo() + ","); // exibe o atual
         }
     }
 
     public void exibirPreOrdem() {
-        System.out.println("\n Exibindo PreOrdem");
+        System.out.println("\n Exibindo PreOrdem ");
         exibirPreOrdem(this.raiz); // exibindo em ordem a partir da raiz
     }
 
     private void exibirPreOrdem(BinNo<T> atual) {  // PreOrdem exibe antes de visitar
         if (atual != null) {
-            System.out.println(atual.getConteudo() + ","); // exibe o atual
+            System.out.print(atual.getConteudo() + ","); // exibe o atual
             exibirPreOrdem(atual.getNoEsq()); // visita o da esquerda
             exibirPreOrdem(atual.getNoDir()); // visita o da direita
         }
@@ -70,7 +70,7 @@ public class ArvoreBinaria <T extends Comparable<T>> {
             BinNo<T> filho = null;
             BinNo<T> temp = null;
 
-            while (atual != null && atual.getConteudo().equals(conteudo)) { // se tiver vazia vai esbarra em nll
+            while (atual != null && !atual.getConteudo().equals(conteudo)) { // se tiver vazia vai esbarra em nll
                 pai = atual;
                 if (conteudo.compareTo(atual.getConteudo()) < 0) { // correndo a arvore procurando o conteudo
                     atual = atual.getNoEsq();  // vai para o nó da esquerda                                                // comparando para ver se vai para esquerda ou direita
@@ -90,56 +90,56 @@ public class ArvoreBinaria <T extends Comparable<T>> {
                 }else if(atual.getNoEsq() == null){ // se tenho o da esquerda como nulo
                     this.raiz = atual.getNoDir(); // pego o da direita
 
-                }else{
+                }else {
                     for (temp = atual, filho = atual.getNoEsq();
-                         filho.getNoDir() !=null; temp = filho, filho = filho.getNoEsq()
+                         filho.getNoDir() != null; temp = filho, filho = filho.getNoEsq()
                     ) {
-                         if (filho != atual.getNoEsq()) {
-                             temp.setNoDir(filho.getNoEsq());
-                             filho.setNoEsq(raiz.getNoEsq());
-                         }
+                        if (filho != atual.getNoEsq()) {
+                            temp.setNoDir(filho.getNoEsq());
+                            filho.setNoEsq(raiz.getNoEsq());
+                        }
                     }
                     filho.setNoDir(raiz.getNoDir());
                     raiz = filho;
-
+                }
 
 
             } else if (atual.getNoDir() == null) {  //se a referencia a direta for null
                 if (pai.getNoEsq() == atual) {
-                    pai.setNoEsq(atual.getNoEsq());
+                        pai.setNoEsq(atual.getNoEsq());
                 }else {
                     pai.setNoDir(atual.getNoEsq());
                 }
 
             } else if (atual.getNoEsq() == null) {
                 if (pai.getNoEsq() == atual) {
-                    pai.setNoEsq(atual.getNoDir());
+                        pai.setNoEsq(atual.getNoDir());
                 }else {
                     pai.setNoDir(atual.getNoDir());
                 }
 
-            }else{
-                for(
+            }else {
+                for (
                         temp = atual, filho = atual.getNoEsq();
                         filho.getNoDir() != null;
                         temp = filho, filho = filho.getNoDir()
-                ){
-                    if(filho != atual.getNoEsq()){
+                ) {
+                    if (filho != atual.getNoEsq()) {
                         temp.setNoDir(filho.getNoEsq());
                         filho.setNoEsq(atual.getNoEsq());
                     }
-                }   filho.setNoDir(atual.getNoDir());
+                    filho.setNoDir(atual.getNoDir());
                     if (pai.getNoEsq() == atual) {
                         pai.setNoEsq(filho);
-                    }else{
+                    } else {
                         pai.setNoDir(filho);
                     }
 
                 }
             }
+        }catch (NullPointerException erro){
+            System.out.println("Conteudo não encontrado. Bloco Catch");
 
-        }catch(NullPointerException erro){
-                System.out.println("Conteudo não encontrado. Bloco Catch");
         }
 
 
