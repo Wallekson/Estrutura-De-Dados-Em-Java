@@ -27,7 +27,7 @@ public class Main{
 
         System.out.println(queueCarros.isEmpty()); // se a fila esta vazia
 
-        System.out.println(queueCarros.size()); tamanho
+        System.out.println(queueCarros.size()); //tamanho
 
     }
 
